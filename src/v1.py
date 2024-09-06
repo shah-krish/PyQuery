@@ -1,9 +1,10 @@
 import mysql.connector
 from tkinter import *
+import login_registration as login
 
 conn = None
-lbl2 = None #display label
-T = None #input textbox
+lbl2 = None
+T = None
 
 def connect_to_database():
     return mysql.connector.connect(
@@ -35,7 +36,7 @@ def sql(event=None):
         lbl2.config(text="SQL Query syntax not correct")
 
 def display_query_result(results):
-    """Display the results of the SQL query in the label."""
+
     if results:
         result_text = "\n".join(str(row) for row in results)
         lbl2.config(text=result_text)
@@ -75,10 +76,19 @@ def close_connection():
 
 def main():
     global conn
-    conn = connect_to_database()
-    try:
-        setup_gui()
-    finally:
+
+    login_manager = login.LoginManager()
+    login_manager.setup_gui()
+
+
+    if login_manager.get_login_status():
+        conn = connect_to_database()
+        try:
+            setup_gui()
+        finally:
+            close_connection()
+    else:
+        print("Login failed, closing application.")
         close_connection()
 
 if __name__ == "__main__":
