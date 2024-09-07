@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql_connection
 from tkinter import *
 import login_registration as login
 
@@ -6,13 +6,6 @@ conn = None
 lbl2 = None
 T = None
 
-def connect_to_database():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="krish123",
-        database="a02"
-    )
 
 def execute_sql_query(query):
     global conn
@@ -82,7 +75,7 @@ def main():
 
 
     if login_manager.get_login_status():
-        conn = connect_to_database()
+        conn = mysql_connection.connect_to_database()
         try:
             setup_gui()
         finally:
