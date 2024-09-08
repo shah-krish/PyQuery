@@ -12,7 +12,7 @@ class LoginManager:
         self.extract_details(username, password)
 
     def extract_details(self, username, password):
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect("../database_sqlite/users.db")
         cursor = conn.cursor()
         stmt = "SELECT password FROM users WHERE username = ?"
         cursor.execute(stmt, (username,))
