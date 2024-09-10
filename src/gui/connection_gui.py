@@ -13,7 +13,19 @@ class DatabaseConnector:
 
     def connect_to_mysql(self):
         # Placeholder method to connect to MySQL
-        print("Connecting to MySQL...")
+        window = Tk()
+        window.title("PyQuery v1")
+        window.geometry('900x200')
+        window.tk.call('tk', 'scaling', 2.0)
+
+        lbl = Label(window, text="Enter host: ")
+        lbl = Label(window, text="Enter user: ")
+        lbl = Label(window, text="Enter password: ")
+        lbl = Label(window, text="Enter database: ")
+        lbl.grid(column=0, row=0)
+        T = Text(window, height=1, width=30)
+        T.grid(column=1, row=0)
+
         # Implement your connection logic here
 
     def connect_to_postgres(self):
@@ -72,7 +84,7 @@ bigquery_config = {
     'credentials': None  # Replace with your BigQuery credentials if needed
 }
 
-# Instantiate the DatabaseConnector with all configurations
+
 db_connector = DatabaseConnector(
     mysql_config=mysql_config,
     postgres_config=postgres_config,
