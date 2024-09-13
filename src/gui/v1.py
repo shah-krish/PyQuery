@@ -1,6 +1,7 @@
 from src.connections import mysql_connector
 from tkinter import *
 from src.gui import login_registration as login
+from src.gui import connection_gui as conn
 
 conn = None
 lbl2 = None

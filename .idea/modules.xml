@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PyQuery.iml" filepath="$PROJECT_DIR$/.idea/PyQuery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pythonDSA/.idea/pythonDSA.iml" filepath="$PROJECT_DIR$/../pythonDSA/.idea/pythonDSA.iml" />
     </modules>
   </component>
 </project>

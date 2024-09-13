@@ -11,8 +11,7 @@ class DatabaseConnector:
         self.snowflake_config = snowflake_config
         self.bigquery_config = bigquery_config
 
-    def connect_to_mysql(self):
-        # Placeholder method to connect to MySQL
+    def mysql_gui(self):
         window = Tk()
         window.title("PyQuery v1")
         window.geometry('900x200')
@@ -39,15 +38,23 @@ class DatabaseConnector:
         btnCancel = Button(window, text="Cancel", command=window.destroy)
         btnCancel.grid(column=3, row=6)
 
-        self.mysql_config['host'] = T_host.get("1.0", "end-1c").strip()
-        self.mysql_config['user'] = T_user.get("1.0", "end-1c").strip()
-        self.mysql_config['password'] = T_pass.get("1.0", "end-1c").strip()
-        self.mysql_config['database'] = T_db.get("1.0", "end-1c").strip()
+        conn_values = []
 
-
+        conn_values[0] = T_host.get("1.0", "end-1c").strip()
+        conn_values[1] = T_user.get("1.0", "end-1c").strip()
+        conn_values[2] = T_pass.get("1.0", "end-1c").strip()
+        conn_values[3] = T_db.get("1.0", "end-1c").strip()
         window.mainloop()
+        return conn_values
 
+    def connect_to_mysql(self):
+        # Placeholder method to connect to MySQL
+        conn_values = self.mysql_gui
 
+        self.mysql_config['database'] = conn_values[0]
+        self.mysql_config['database'] = conn_values[1]
+        self.mysql_config['database'] = conn_values[2]
+        self.mysql_config['database'] = conn_values[3]
 
     def connect_to_postgres(self):
         # Placeholder method to connect to PostgreSQL
@@ -127,36 +134,36 @@ def connect_bigquery():
     db_connector.connect_to_bigquery()
 
 # Create the Tkinter window
-window = Tk()
-window.title("PyQuery v1")
-window.geometry('900x200')
-window.tk.call('tk', 'scaling', 2.0)
-
-lbl_prompt = Label(window, text="Select Database:", font=font.Font(size=14))
-lbl_prompt.grid(column=2, row=0)
-
-# Configure grid columns
-for i in range(12):
-    window.grid_columnconfigure(i, weight=1)
-
-# Configure grid rows
-window.grid_rowconfigure(3, weight=1)
-
-# Create buttons with appropriate commands
-btn_mysql = Button(window, text="MySQL", command=connect_mysql)
-btn_mysql.grid(column=2, row=3, padx=15, pady=10, sticky='ew')
-
-btn_postgres = Button(window, text="Postgres", command=connect_postgres)
-btn_postgres.grid(column=4, row=3, padx=15, pady=10, sticky='ew')
-
-btn_redshift = Button(window, text="Redshift", command=connect_redshift)
-btn_redshift.grid(column=6, row=3, padx=15, pady=10, sticky='ew')
-
-btn_snowflake = Button(window, text="Snowflake", command=connect_snowflake)
-btn_snowflake.grid(column=8, row=3, padx=15, pady=10, sticky='ew')
-
-btn_bigquery = Button(window, text="BigQuery", command=connect_bigquery)
-btn_bigquery.grid(column=10, row=3, padx=15, pady=10, sticky='ew')
-
-# Run the Tkinter event loop
-window.mainloop()
+# window = Tk()
+# window.title("PyQuery v1")
+# window.geometry('900x200')
+# window.tk.call('tk', 'scaling', 2.0)
+#
+# lbl_prompt = Label(window, text="Select Database:", font=font.Font(size=14))
+# lbl_prompt.grid(column=2, row=0)
+#
+# # Configure grid columns
+# for i in range(12):
+#     window.grid_columnconfigure(i, weight=1)
+#
+# # Configure grid rows
+# window.grid_rowconfigure(3, weight=1)
+#
+# # Create buttons with appropriate commands
+# btn_mysql = Button(window, text="MySQL", command=connect_mysql)
+# btn_mysql.grid(column=2, row=3, padx=15, pady=10, sticky='ew')
+#
+# btn_postgres = Button(window, text="Postgres", command=connect_postgres)
+# btn_postgres.grid(column=4, row=3, padx=15, pady=10, sticky='ew')
+#
+# btn_redshift = Button(window, text="Redshift", command=connect_redshift)
+# btn_redshift.grid(column=6, row=3, padx=15, pady=10, sticky='ew')
+#
+# btn_snowflake = Button(window, text="Snowflake", command=connect_snowflake)
+# btn_snowflake.grid(column=8, row=3, padx=15, pady=10, sticky='ew')
+#
+# btn_bigquery = Button(window, text="BigQuery", command=connect_bigquery)
+# btn_bigquery.grid(column=10, row=3, padx=15, pady=10, sticky='ew')
+#
+# # Run the Tkinter event loop
+# window.mainloop()
